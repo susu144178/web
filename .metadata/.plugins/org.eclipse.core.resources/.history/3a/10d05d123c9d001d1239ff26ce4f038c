@@ -1,0 +1,14 @@
+package index;
+
+import java.util.List;
+
+import database.DAO.BoardDAO;
+import database.Entity.BoardEntity;
+
+public class MainApplication {
+
+	public static void main(String[] args) {
+		
+			
+	}
+}

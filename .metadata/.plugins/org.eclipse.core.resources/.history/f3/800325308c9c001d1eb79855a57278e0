@@ -1,0 +1,9 @@
+package dto;
+
+public class InsertBoardDTO {
+	
+	private String boardTitle;
+	private String boardContent;
+	private Integer boardWriter;
+
+}

@@ -1,0 +1,43 @@
+package index;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class MainApplication {
+	
+	// MySQL Connector를 사용할 Connection 객체를 선언
+	private static Connection connection = null;
+
+	public static void main(String[] args) {
+		
+		try {
+			// 1. MySQL connector Driver 로드
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			// 2. MySQL Driver로 Connection 객체 생성
+			// 데이터베이스 URL, 데이터베이스 사용자 이름(ID), 데이터베이스 사용자 패스워드
+			final String DATABASE_URL = "jdbc:mysql://127.0.0.1:3306/peed";
+			final String USER_NAME = "root";
+			final String USER_PASSWORD = "root";
+			
+			connection = 
+					DriverManager.getConnection(DATABASE_URL, USER_NAME, USER_PASSWORD);
+			System.out.println("Database Connection Success!");
+			
+		} catch(Exception exception) {
+			exception.printStackTrace();
+			System.out.println("Database Connection Fail!");
+			
+		} finally {
+			// 3. 사용한 Connection 객체를 Close
+			try {
+				if(connection != null && !connection.isClosed())
+					connection.close();
+			} catch(Exception exception) {
+				exception.printStackTrace();
+			}
+		}
+		
+	}
+
+}
