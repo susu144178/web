@@ -1,8 +1,0 @@
-package database.DAO;
-
-// DAO : Data Access Object
-// 데이터베이스에 접근해서 데이터 검색 및 삽입 등의 데이터베이스 작업을 담당하는 클래스
-public class BoardDAO {
-	
-	
-}
