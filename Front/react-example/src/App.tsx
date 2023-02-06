@@ -11,13 +11,7 @@ export default function App() {
   const [view, setView] = useState<string>("");
   return (
     <div>
-      <MenuAppBar />
-      <button onClick={() => setView("naverSignIn")}>
-        네이버 회원가입 화면
-      </button>
-      <button onClick={() => setView("kakaoSignIn")}>
-        카카오 로그인 화면
-      </button>
+      <MenuAppBar setView={setView} />
       <div>
         {/* {view === "naverSignIn" && <NaverSignIn />} */}
         {/*

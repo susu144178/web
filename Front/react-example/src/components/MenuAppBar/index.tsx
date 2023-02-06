@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from 'react';
+import { useState, MouseEvent, Dispatch, SetStateAction } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,9 +14,11 @@ import MenuItem from '@mui/material/MenuItem';
 
 const pages = [{title:'Naver', viewValue:'naverSignIn'}, {title:'Kakao', viewValue:'kakaoSignIn'}];
 
-function MenuAppBar() {
-  //! view state //
-  const [view, setView] = useState<string>("");
+interface Props {
+  setView: Dispatch<SetStateAction<string>>;
+}
+
+function MenuAppBar({setView}: Props) {
   
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
@@ -113,7 +115,7 @@ function MenuAppBar() {
             {pages.map((page) => (
               <Button
                 key={page.title}
-                onClick={() => setView(page.title)}
+                onClick={() => setView(page.viewValue)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page.title}
