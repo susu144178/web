@@ -5,22 +5,27 @@ import { useState } from "react";
 import {
   Box,
   Card,
-  FormControl,
   Grid,
-  IconButton,
-  Input,
-  InputAdornment,
-  InputLabel,
   TextField,
   Typography,
+  FormControl,
+  InputLabel,
+  Input,
+  InputAdornment,
+  IconButton,
+  Button,
 } from "@mui/material";
-
 import ContentPasteTwoToneIcon from "@mui/icons-material/ContentPasteTwoTone";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import Visibility from "@mui/icons-material/Visibility";
+import LoginCardView from "./LoginCardView";
+import SignUpCardView from "./SignUpCardView";
 
-export default function LoginView() {
-    const [showPassword, setShowPassword] = useState<boolean>();
+//! 컴포넌트 return 안에서 논리연산자와 삼항연산자를 조건문처럼 사용 할때
+//? 논리 연산자 (&&) : if문만 쓸 때
+//? 삼항 연산자 (조건 ? 참 : 거짓) : if - else / if - else if - else 쓸 때
+
+export default function AuthenticationView() {
+  const [loginView, setLoginView] = useState<boolean>(true);
+
   return (
     <Box sx={{ pr: "120px", pl: "120px" }}>
       <Grid container spacing={2}>
@@ -42,7 +47,7 @@ export default function LoginView() {
         <Grid item lg={5} sm={12}>
           <Card
             sx={{
-              height: "710px",
+              height: "630px",
               mt: "100px",
               mb: "80px",
               pt: "50px",
@@ -51,33 +56,7 @@ export default function LoginView() {
               pr: "50px",
             }}
           >
-            <Typography variant="h5" fontWeight="900">
-              로그인
-            </Typography>
-            <TextField
-              sx={{ mt: "40px" }}
-              fullWidth
-              label="이메일 주소"
-              variant="standard"
-            />
-            <FormControl sx={{ m: 1, width: "25ch" }} variant="standard">
-              <InputLabel htmlFor="standard-adornment-password">
-                Password
-              </InputLabel>
-              <Input
-                type={showPassword ? "text" : "password"}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-            </FormControl>
+            {loginView ? (<LoginCardView setLoginView={setLoginView} />) : (<SignUpCardView setLoginView={setLoginView} />)}
           </Card>
         </Grid>
       </Grid>
