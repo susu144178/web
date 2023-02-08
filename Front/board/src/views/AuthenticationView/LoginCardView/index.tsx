@@ -18,6 +18,7 @@ interface Props {
 }
 
 export default function LoginCardView({ setLoginView }: Props) {
+
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   return (

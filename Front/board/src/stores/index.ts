@@ -1,2 +1,4 @@
 //? 스토어 관리
-export const tmp = ""
+import useSignUpStore from './sign-up.store'
+
+export { useSignUpStore };
