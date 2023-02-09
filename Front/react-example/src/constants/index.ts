@@ -19,3 +19,22 @@ export const PHONE = '11111111';
 //! export default 요소; 로 내보낸 요소는 import 할 때 내보낸 요소의 이름과 달라도 됨
 export default AGE;
 // export default BIRTH;
+
+export const PAGES = [
+    {
+        title: 'Naver',
+        viewValue: 'naverSignIn',
+    },
+    {
+        title: 'Kakao',
+        viewValue: 'kakaoSignIn',
+    },
+    {
+        title: 'ES6 + Typescript',
+        viewValue: 'es6TypeScript',
+    },
+    {
+        title: 'JSX + TSX',
+        viewValue: 'jsxTsx'
+    }
+]
