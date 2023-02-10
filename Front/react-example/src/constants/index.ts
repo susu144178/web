@@ -1,3 +1,5 @@
+import { VIEW } from "src/enums";
+
 const AGE = 20;
 const BIRTH = '971119';
 
@@ -23,18 +25,26 @@ export default AGE;
 export const PAGES = [
     {
         title: 'Naver',
-        viewValue: 'naverSignIn',
+        viewValue: VIEW.NAVER,
     },
     {
         title: 'Kakao',
-        viewValue: 'kakaoSignIn',
+        viewValue: VIEW.KAKAO,
     },
     {
         title: 'ES6 + Typescript',
-        viewValue: 'es6TypeScript',
+        viewValue: VIEW.TYPESCRIPT
     },
     {
         title: 'JSX + TSX',
-        viewValue: 'jsxTsx'
+        viewValue: VIEW.TSX
+    },
+    {
+        title: 'HOOK',
+        viewValue: VIEW.HOOK
+    },
+    {
+        title: 'MUI',
+        viewValue: VIEW.MUI
     }
 ]

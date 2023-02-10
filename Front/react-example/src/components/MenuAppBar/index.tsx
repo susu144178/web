@@ -12,9 +12,10 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { PAGES } from 'src/constants';
+import { VIEW } from 'src/enums';
 
 interface Props {
-  setView: Dispatch<SetStateAction<string>>;
+  setView: Dispatch<SetStateAction<VIEW>>;
 }
 
 function MenuAppBar({setView}: Props) {

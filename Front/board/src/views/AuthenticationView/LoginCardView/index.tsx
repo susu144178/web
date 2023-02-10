@@ -19,6 +19,8 @@ interface Props {
 
 export default function LoginCardView({ setLoginView }: Props) {
 
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   return (
@@ -39,6 +41,7 @@ export default function LoginCardView({ setLoginView }: Props) {
           fullWidth
           label="이메일 주소"
           variant="standard"
+          onChange={(event) => setEmail(event.target.value)}
         />
         <FormControl fullWidth variant="standard" sx={{ mt: "40px" }}>
           <InputLabel>비밀번호</InputLabel>
@@ -51,6 +54,7 @@ export default function LoginCardView({ setLoginView }: Props) {
                 </IconButton>
               </InputAdornment>
             }
+            onChange={(event) => setPassword(event.target.value)}
           />
         </FormControl>
       </Box>

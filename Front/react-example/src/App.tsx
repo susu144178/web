@@ -8,9 +8,11 @@ import { Link } from "react-router-dom";
 import './App.css';
 import Es6Typescript from "./views/Es6TypeScript";
 import JsxTsx from "./views/JsxTsx";
+import { VIEW } from "./enums";
+import Hook from "./views/Hook";
 
 export default function App() {
-  const [view, setView] = useState<string>("");
+  const [view, setView] = useState<VIEW>(VIEW.NAVER);
   return (
     <div>
       <MenuAppBar setView={setView} />
@@ -27,10 +29,12 @@ export default function App() {
           //! <></> : 아무런 의미가 없는 빈 태그        
         */}
         {
-          view === 'naverSignIn' ? (<NaverSignIn />) : 
-          view === 'kakaoSignIn' ? (<KakaoSignIn />) :
-          view === 'es6TypeScript' ? (<Es6Typescript />) :
-          view === 'jsxTsx' ? (<JsxTsx />) : (<></>)
+          view === VIEW.NAVER ? (<NaverSignIn />) : 
+          view === VIEW.KAKAO ? (<KakaoSignIn />) :
+          view === VIEW.TYPESCRIPT ? (<Es6Typescript />) :
+          view === VIEW.TSX ? (<JsxTsx />) :
+          view === VIEW.HOOK ? (<Hook/>) :
+          view === VIEW.MUI ? (<></>) : (<></>)
         }
       </div>
     </div>
