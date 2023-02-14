@@ -13,14 +13,12 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { PAGES } from 'src/constants';
 import { VIEW } from 'src/enums';
+import { Link, useNavigate } from 'react-router-dom';
 
-interface Props {
-  setView: Dispatch<SetStateAction<VIEW>>;
-}
-
-function MenuAppBar({setView}: Props) {
+function MenuAppBar() {
   
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const navigator = useNavigate();
 
   const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -88,8 +86,8 @@ function MenuAppBar({setView}: Props) {
                 Kakao, kakaoSignIn
               */}
               {PAGES.map((page) => (
-                <MenuItem key={page.title} onClick={() => setView(page.viewValue)}>
-                  <Typography textAlign="center">{page.title}</Typography>
+                <MenuItem key={page.title}>
+                  <Link to={page.viewValue} style={{textAlign: 'center'}}>{page.title}</Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -115,8 +113,8 @@ function MenuAppBar({setView}: Props) {
             {PAGES.map((page) => (
               <Button
                 key={page.title}
-                onClick={() => setView(page.viewValue)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
+                onClick={() => navigator(page.viewValue)}
               >
                 {page.title}
               </Button>
