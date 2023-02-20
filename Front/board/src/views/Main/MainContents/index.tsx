@@ -1,12 +1,18 @@
+import { useEffect } from "react";
 import { Box, Grid, Pagination, Typography, Stack } from '@mui/material'
 import BoardListItem from 'src/components/BoardListItem'
 import PopularCard from 'src/components/PopularCard'
 import { getPageCount } from 'src/utils';
 import { usePagingHook } from 'src/hooks';
+import { BOARD_LIST } from 'src/mock';
 
 export default function MainContents() {
 
-  const { boardList, viewList, pageNumber, onPageHandler, COUNT } = usePagingHook();
+  const { boardList, viewList, pageNumber, setBoardList, onPageHandler, COUNT } = usePagingHook();
+
+  useEffect(() => {
+    setBoardList(BOARD_LIST);
+  }, [])
 
   return (
     <Box sx={{ p: '40px 120px', backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>

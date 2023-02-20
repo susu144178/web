@@ -9,6 +9,15 @@ export interface IPreviewItem {
     likeCount: number;
     commentCount: number;
     viewCount: number;
-
     boardNumber: number;
+}
+
+export interface IUser {
+    email: string;
+    password: string;
+    nickname: string;
+    telNumber: string;
+    address: string;
+    addressDetail: string;
+    profile?: string;
 }
