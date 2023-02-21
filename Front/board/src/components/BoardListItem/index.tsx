@@ -20,7 +20,7 @@ export default function BoardListItem({ item }: Props) {
         justifyContent: "space-between",
         p: "24px",
         backgroundColor: "#ffffff",
-      }} onClick={() => navigator(`/board/detail/${item.boardNumber}`)}>
+      }} onClick={() => navigator(`/board/update/${item.boardNumber}`)}>
         <Box>
           <Box sx={{ display: "flex" }}>
             <Box sx={{ mr: "8px" }}>

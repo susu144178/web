@@ -16,14 +16,14 @@ export const TOP3: IPreviewItem[] = [
     {
         img: '',
         writerProfile: '',
-        writerNickname: '작성자2',
+        writerNickname: 'admin',
         writeDate: '2023. 02. 15.',
-        boardTitle: '게시물 제목2',
+        boardTitle: '게시물 제목2####',
         boardContent: '게시물2 내용입니다.',
         likeCount: 10,
         commentCount: 78,
         viewCount: 543,
-        boardNumber: 1
+        boardNumber: 2
     },
     {
         img: '',
@@ -55,7 +55,7 @@ export const BOARD_LIST: IPreviewItem[] = [
     {
         img: '',
         writerProfile: '',
-        writerNickname: '작성자2',
+        writerNickname: 'admin',
         writeDate: '2023. 02. 15.',
         boardTitle: '게시물 제목2',
         boardContent: '게시물2 내용입니다.',
@@ -90,7 +90,7 @@ export const BOARD_LIST: IPreviewItem[] = [
     {
         img: '',
         writerProfile: '',
-        writerNickname: '작성자2',
+        writerNickname: 'admin',
         writeDate: '2023. 02. 15.',
         boardTitle: '게시물 제목2',
         boardContent: '게시물2 내용입니다.',
@@ -125,7 +125,7 @@ export const BOARD_LIST: IPreviewItem[] = [
     {
         img: '',
         writerProfile: '',
-        writerNickname: '작성자2',
+        writerNickname: 'admin',
         writeDate: '2023. 02. 15.',
         boardTitle: '게시물 제목2',
         boardContent: '게시물2 내용입니다.',
@@ -160,7 +160,7 @@ export const BOARD_LIST: IPreviewItem[] = [
     {
         img: '',
         writerProfile: '',
-        writerNickname: '작성자2',
+        writerNickname: 'admin',
         writeDate: '2023. 02. 15.',
         boardTitle: '게시물 제목2',
         boardContent: '게시물2 내용입니다.',
@@ -195,7 +195,7 @@ export const BOARD_LIST: IPreviewItem[] = [
     {
         img: '',
         writerProfile: '',
-        writerNickname: '작성자2',
+        writerNickname: 'admin',
         writeDate: '2023. 02. 15.',
         boardTitle: '게시물 제목2',
         boardContent: '게시물2 내용입니다.',
@@ -230,7 +230,7 @@ export const BOARD_LIST: IPreviewItem[] = [
     {
         img: '',
         writerProfile: '',
-        writerNickname: '작성자2',
+        writerNickname: 'admin',
         writeDate: '2023. 02. 15.',
         boardTitle: '게시물 제목2',
         boardContent: '게시물2 내용입니다.',
@@ -265,7 +265,7 @@ export const BOARD_LIST: IPreviewItem[] = [
     {
         img: '',
         writerProfile: '',
-        writerNickname: '작성자2',
+        writerNickname: 'admin',
         writeDate: '2023. 02. 15.',
         boardTitle: '게시물 제목2',
         boardContent: '게시물2 내용입니다.',
@@ -300,7 +300,7 @@ export const BOARD_LIST: IPreviewItem[] = [
     {
         img: '',
         writerProfile: '',
-        writerNickname: '작성자2',
+        writerNickname: 'admin',
         writeDate: '2023. 02. 15.',
         boardTitle: '게시물 제목2',
         boardContent: '게시물2 내용입니다.',
@@ -335,7 +335,7 @@ export const BOARD_LIST: IPreviewItem[] = [
     {
         img: '',
         writerProfile: '',
-        writerNickname: '작성자2',
+        writerNickname: 'admin',
         writeDate: '2023. 02. 15.',
         boardTitle: '게시물 제목2',
         boardContent: '게시물2 내용입니다.',
@@ -370,7 +370,7 @@ export const BOARD_LIST: IPreviewItem[] = [
     {
         img: '',
         writerProfile: '',
-        writerNickname: '작성자2',
+        writerNickname: 'admin',
         writeDate: '2023. 02. 15.',
         boardTitle: '게시물 제목2',
         boardContent: '게시물2 내용입니다.',
@@ -406,7 +406,7 @@ export const BOARD_LIST: IPreviewItem[] = [
     {
         img: '',
         writerProfile: '',
-        writerNickname: '작성자2',
+        writerNickname: 'admin',
         writeDate: '2023. 02. 15.',
         boardTitle: '게시물 제목2',
         boardContent: '게시물2 내용입니다.',
@@ -442,7 +442,7 @@ export const BOARD_LIST: IPreviewItem[] = [
     {
         img: '',
         writerProfile: '',
-        writerNickname: '작성자2',
+        writerNickname: 'admin',
         writeDate: '2023. 02. 15.',
         boardTitle: '게시물 제목2',
         boardContent: '게시물2 내용입니다.',
