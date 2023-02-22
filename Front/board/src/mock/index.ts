@@ -1,4 +1,4 @@
-import { IPreviewItem, IUser } from "src/interfaces";
+import { ILikeUser, IPreviewItem, IUser } from "src/interfaces";
 
 export const TOP3: IPreviewItem[] = [
     {
@@ -18,12 +18,12 @@ export const TOP3: IPreviewItem[] = [
         writerProfile: '',
         writerNickname: 'admin',
         writeDate: '2023. 02. 15.',
-        boardTitle: '게시물 제목2####',
+        boardTitle: '게시물 제목2',
         boardContent: '게시물2 내용입니다.',
         likeCount: 10,
         commentCount: 78,
         viewCount: 543,
-        boardNumber: 2
+        boardNumber: 1
     },
     {
         img: '',
@@ -57,12 +57,12 @@ export const BOARD_LIST: IPreviewItem[] = [
         writerProfile: '',
         writerNickname: 'admin',
         writeDate: '2023. 02. 15.',
-        boardTitle: '게시물 제목2',
+        boardTitle: '게시물 제목2####',
         boardContent: '게시물2 내용입니다.',
         likeCount: 10,
         commentCount: 78,
         viewCount: 543,
-        boardNumber: 1
+        boardNumber: 2
     },
     {
         img: '',
@@ -486,3 +486,90 @@ export const USER: IUser = {
    address: '부산광역시 부산진구',
    addressDetail: '부전동',
 }
+
+export const LIKE_LIST: ILikeUser[] = [
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+    {
+        likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
+        likeUserNickName: '울맨'
+    },
+]
