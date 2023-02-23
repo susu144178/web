@@ -24,5 +24,12 @@ export interface IUser {
 
 export interface ILikeUser {
     likeUserProfile: string;
-    likeUserNickName: string;
+    likeUserNickname: string;
+}
+
+export interface ICommentItem {
+    commentUserProfile: string;
+    commentUserNickname: string;
+    commentContent: string;
+    commentDatetime: string;
 }

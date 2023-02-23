@@ -5,10 +5,11 @@ import PopularCard from 'src/components/PopularCard'
 import { getPageCount } from 'src/utils';
 import { usePagingHook } from 'src/hooks';
 import { BOARD_LIST } from 'src/mock';
+import { IPreviewItem } from "src/interfaces";
 
 export default function MainContents() {
 
-  const { boardList, viewList, pageNumber, setBoardList, onPageHandler, COUNT } = usePagingHook();
+  const { boardList, viewList, pageNumber, setBoardList, onPageHandler, COUNT } = usePagingHook(5);
 
   useEffect(() => {
     setBoardList(BOARD_LIST);
@@ -23,7 +24,7 @@ export default function MainContents() {
         <Grid container spacing={3}>
           <Grid item sm={12} md={8}>
             <Stack spacing={2}>
-              {viewList.map((boardItem) => (<BoardListItem item={boardItem} />))}
+              {viewList.map((boardItem) => (<BoardListItem item={boardItem as IPreviewItem} />))}
             </Stack>
           </Grid>
           <Grid item sm={12} md={4}>

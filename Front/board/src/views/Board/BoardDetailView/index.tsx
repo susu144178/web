@@ -1,11 +1,15 @@
 import {
   Avatar,
   Box,
+  Button,
   Card,
   Divider,
   IconButton,
+  Input,
   Menu,
   MenuItem,
+  Pagination,
+  Stack,
   Typography,
 } from "@mui/material";
 import { MouseEvent, useEffect, useState } from "react";
@@ -16,10 +20,13 @@ import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDown
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import { useNavigate, useParams } from "react-router-dom";
-import { BOARD_LIST, LIKE_LIST } from "src/mock";
-import { ILikeUser, IPreviewItem } from "src/interfaces";
+import { BOARD_LIST, COMMENT_LIST, LIKE_LIST } from "src/mock";
+import { ICommentItem, ILikeUser, IPreviewItem } from "src/interfaces";
 import { useUserStore } from "src/stores";
 import LikeListItem from "src/components/LikeListItem";
+import CommentListItem from "src/components/CommentListItem";
+import { usePagingHook } from "src/hooks";
+import { getPageCount } from "src/utils";
 
 export default function BoardDetailView() {
   const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
@@ -30,6 +37,8 @@ export default function BoardDetailView() {
   const [openLike, setOpenLike] = useState<boolean>(false);
   const [likeList, setLikeList] = useState<ILikeUser[]>([]);
   const [openComment, setOpenComment] = useState<boolean>(false);
+
+  const { boardList, setBoardList, viewList, COUNT, pageNumber, onPageHandler } = usePagingHook(3);
 
   const { boardNumber } = useParams();
   const navigator = useNavigate();
@@ -68,6 +77,8 @@ export default function BoardDetailView() {
     setMenuFlag(owner);
 
     setBoard(board);
+
+    setBoardList(COMMENT_LIST)
   }, []);
 
   return (
@@ -189,7 +200,28 @@ export default function BoardDetailView() {
             </Card>
       </Box>) }
       <Box>
-
+        { openComment && (
+        <Box>
+          <Box sx={{ p: '20px' }}>
+            <Typography sx={{ fontSize: '16px', fontWeight: 500 }}>댓글 {boardList.length}</Typography>
+            <Stack sx={{ p: '20px 0px' }} spacing={3.75}>
+              {viewList.map((commentItem) => (<CommentListItem item={commentItem as ICommentItem} />))}
+            </Stack>
+          </Box>
+          <Divider />
+          <Box sx={{ p: '20px 0px', display: 'flex', justifyContent: 'center' }}>
+            <Pagination page={pageNumber} count={getPageCount(boardList, COUNT)} onChange={(event, value) => onPageHandler(value)} />
+          </Box>
+          <Box>
+            <Card variant="outlined" sx={{ p: '20px' }}>
+              <Input minRows={3} multiline disableUnderline fullWidth />
+              <Box sx={{ display: 'flex', justifyContent: 'end' }}>
+                <Button sx={{ p: '4px 23px', backgroundColor: '#000000', fontSize: '14px', fontWeight: 400, color: '#ffffff', borderRadius: '46px' }}>댓글달기</Button>
+              </Box>
+            </Card>
+          </Box>
+        </Box>
+        )}
       </Box>
     </Box>
   );

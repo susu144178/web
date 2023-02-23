@@ -8,10 +8,11 @@ import { useUserStore } from 'src/stores';
 import BoardListItem from 'src/components/BoardListItem';
 import { getPageCount } from 'src/utils';
 import { useNavigate } from 'react-router-dom';
+import { IPreviewItem } from 'src/interfaces';
 
 export default function MyPageContents() {
 
-    const { boardList, viewList, pageNumber, setBoardList, onPageHandler, COUNT } = usePagingHook();
+    const { boardList, viewList, pageNumber, setBoardList, onPageHandler, COUNT } = usePagingHook(5);
     //? 로그인 한 상태일 때 유저 정보를 가져올 수 있도록
     //? 스토어에서 user 상태를 가져옴
     const { user } = useUserStore();
@@ -42,7 +43,7 @@ export default function MyPageContents() {
             <Grid container spacing={3}>
                 <Grid item sm={12} md={8}>
                     <Stack spacing={2}>
-                        {viewList.map((boardItem) => (<BoardListItem item={boardItem}/>))}
+                        {viewList.map((boardItem) => (<BoardListItem item={boardItem as IPreviewItem}/>))}
                     </Stack>
                 </Grid>
                 <Grid item sm={12} md={4}>

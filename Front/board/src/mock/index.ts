@@ -1,4 +1,4 @@
-import { ILikeUser, IPreviewItem, IUser } from "src/interfaces";
+import { ICommentItem, ILikeUser, IPreviewItem, IUser } from "src/interfaces";
 
 export const TOP3: IPreviewItem[] = [
     {
@@ -490,86 +490,221 @@ export const USER: IUser = {
 export const LIKE_LIST: ILikeUser[] = [
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
     },
     {
         likeUserProfile: 'https://img.freepik.com/free-photo/portrait-of-white-man-isolated_53876-40306.jpg',
-        likeUserNickName: '울맨'
+        likeUserNickname: '울맨'
+    },
+];
+
+export const COMMENT_LIST: ICommentItem[] = [
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
+    },
+    {
+        commentUserProfile: '',
+        commentUserNickname: '울맨',
+        commentContent: '안녕하세요~',
+        commentDatetime: '2023-02-23 14:49',
     },
 ]

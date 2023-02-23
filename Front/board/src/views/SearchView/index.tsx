@@ -6,11 +6,12 @@ import PopularCard from "src/components/PopularCard";
 import { usePagingHook } from "src/hooks";
 import { BOARD_LIST } from "src/mock";
 import { getPageCount } from "src/utils";
+import { IPreviewItem } from 'src/interfaces';
 
 export default function SearchView() {
   const { content } = useParams();
   const { boardList, viewList, pageNumber, setBoardList, onPageHandler, COUNT } =
-    usePagingHook();
+    usePagingHook(5);
 
     // const COUNT = 5;
 
@@ -75,7 +76,7 @@ export default function SearchView() {
                   </Typography>
                 </Box>
               ) : (
-                viewList.map((boardItem) => <BoardListItem item={boardItem} />)
+                viewList.map((boardItem) => <BoardListItem item={boardItem as IPreviewItem} />)
               )}
             </Stack>
           </Grid>
