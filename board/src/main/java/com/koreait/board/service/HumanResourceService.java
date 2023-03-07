@@ -3,9 +3,12 @@ package com.koreait.board.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.koreait.board.common.constant.ResponseMessage;
 import com.koreait.board.dto.request.humanResource.PostHumanResourceRequestDto;
 import com.koreait.board.dto.response.ResponseDto;
+import com.koreait.board.dto.response.humanResource.GetHumanReourceResponseDto;
 import com.koreait.board.dto.response.humanResource.PostHumanResourceResponseDto;
+import com.koreait.board.entity.EmployeeEntity;
 import com.koreait.board.repository.DepartmentRepository;
 import com.koreait.board.repository.EmployeeRepository;
 
@@ -20,18 +23,53 @@ public class HumanResourceService {
 
     public ResponseDto<PostHumanResourceResponseDto> postHumanResource(PostHumanResourceRequestDto dto) {
 
+        PostHumanResourceResponseDto data = null;
+
         String telNumber = dto.getTelNumber();
+        String departmentCode = dto.getDepartment();
 
         try {
-            boolean hasTelNumber = employeeRepository.existByTelNumber(telNumber);
-            if (hasTelNumber) return ResponseDto.setFail("Existed TelNumber");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseDto.setFail("Database Error");
+            boolean hasTelNumber = employeeRepository.existsByTelNumber(telNumber);
+            if (hasTelNumber) return ResponseDto.setFail(ResponseMessage.EXIST_TELEPHONE_NUMBER);
+
+            if (departmentCode != null) {
+                boolean hasDepartment = departmentRepository.existsById(departmentCode);
+                if (!hasDepartment) return ResponseDto.setFail(ResponseMessage.NOT_EXIST_DEPARTMENT);
+            }
+
+            EmployeeEntity employeeEntity = new EmployeeEntity(dto);
+            employeeRepository.save(employeeEntity);
+
+            data = new PostHumanResourceResponseDto(employeeEntity);
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.setFail(ResponseMessage.DATABASE_ERROR);
+        }
+        
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
+    }
+
+    public ResponseDto<GetHumanReourceResponseDto> getHumanResource(int employeeNumber) {
+
+        GetHumanReourceResponseDto data = null;
+
+        try {
+            // boolean hasEmployee = employeeRepository.existsById(employeeNumber);
+            // if (!hasEmployee) return ResponseDto.setFail("존재 X");
+            // EmployeeEntity employeeEntity = employeeRepository.findById(employeeNumber).get();
+
+            EmployeeEntity employeeEntity = employeeRepository.findByEmployeeNumber(employeeNumber);
+            if (employeeEntity == null) return ResponseDto.setFail(ResponseMessage.NOT_EXIST_EMPLOYEE_NUMBER);
+
+            data = new GetHumanReourceResponseDto(employeeEntity);
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.setFail(ResponseMessage.DATABASE_ERROR);
         }
 
-        PostHumanResourceResponseDto data = new PostHumanResourceResponseDto();
-        return ResponseDto.setSuccess("Success", data);
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
     }
 
 }

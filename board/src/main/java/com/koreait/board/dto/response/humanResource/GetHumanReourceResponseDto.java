@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostHumanResourceResponseDto {
+public class GetHumanReourceResponseDto {
     
     //^ 사번
     private int employeeNumber;
@@ -42,7 +42,7 @@ public class PostHumanResourceResponseDto {
     //^ 비고
     private String note;
 
-    public PostHumanResourceResponseDto(EmployeeEntity employeeEntity) {
+    public GetHumanReourceResponseDto(EmployeeEntity employeeEntity) {
         this.employeeNumber = employeeEntity.getEmployeeNumber();
         this.position = employeeEntity.getPosition();
         this.name = employeeEntity.getName();
