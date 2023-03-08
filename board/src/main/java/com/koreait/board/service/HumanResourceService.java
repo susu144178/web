@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.koreait.board.common.constant.ResponseMessage;
+import com.koreait.board.dto.request.humanResource.PatchHumanResourceRequestDto;
 import com.koreait.board.dto.request.humanResource.PostHumanResourceRequestDto;
 import com.koreait.board.dto.response.ResponseDto;
 import com.koreait.board.dto.response.humanResource.GetHumanReourceResponseDto;
+import com.koreait.board.dto.response.humanResource.PatchHumanResourceResponseDto;
 import com.koreait.board.dto.response.humanResource.PostHumanResourceResponseDto;
 import com.koreait.board.entity.EmployeeEntity;
 import com.koreait.board.repository.DepartmentRepository;
@@ -63,6 +65,36 @@ public class HumanResourceService {
             if (employeeEntity == null) return ResponseDto.setFail(ResponseMessage.NOT_EXIST_EMPLOYEE_NUMBER);
 
             data = new GetHumanReourceResponseDto(employeeEntity);
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.setFail(ResponseMessage.DATABASE_ERROR);
+        }
+
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
+    }
+
+    public ResponseDto<PatchHumanResourceResponseDto> patchHumanResource(PatchHumanResourceRequestDto dto) {
+
+        PatchHumanResourceResponseDto data = null;
+
+        int employeeNumber = dto.getEmployeeNumber();
+        String departmentCode = dto.getDepartment();
+
+        try {
+
+            boolean hasEmployee = employeeRepository.existsById(employeeNumber);
+            if (!hasEmployee) return ResponseDto.setFail(ResponseMessage.NOT_EXIST_EMPLOYEE_NUMBER);
+
+            if (departmentCode != null) {
+                boolean hasDepartment = departmentRepository.existsById(departmentCode);
+                if (!hasDepartment) return ResponseDto.setFail(ResponseMessage.NOT_EXIST_DEPARTMENT);
+            }
+
+            EmployeeEntity employeeEntity = new EmployeeEntity(dto);
+            employeeRepository.save(employeeEntity);
+
+            data = new PatchHumanResourceResponseDto(employeeEntity);
 
         } catch (Exception exception) {
             exception.printStackTrace();
