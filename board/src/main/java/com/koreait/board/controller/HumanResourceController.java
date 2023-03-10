@@ -3,6 +3,7 @@ package com.koreait.board.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,7 +42,8 @@ public class HumanResourceController {
 
     @GetMapping(GET_HUMAN_RESOURCE)
     //? GET http://localhost:4040/apis/hr/사번
-    public ResponseDto<GetHumanReourceResponseDto> getHumanResource(@PathVariable("employeeNumber") int employeeNumber) {
+    public ResponseDto<GetHumanReourceResponseDto> getHumanResource(@AuthenticationPrincipal String sub, @PathVariable("employeeNumber") int employeeNumber) {
+        System.out.println("sub: " + sub);   
         ResponseDto<GetHumanReourceResponseDto> response = humanResourceService.getHumanResource(employeeNumber);
 
         return response;
