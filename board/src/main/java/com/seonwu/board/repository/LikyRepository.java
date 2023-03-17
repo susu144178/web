@@ -12,5 +12,6 @@ import com.seonwu.board.entity.primaryKey.LikyPk;
 public interface LikyRepository extends JpaRepository<LikyEntity, LikyPk> {
 
     public List<LikyEntity> findByBoardNumber(int boardNumber);
+    public LikyEntity findByUserEmailAndBoardNumber(String userEmail, int boardNumber);
     
 }
