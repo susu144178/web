@@ -16,8 +16,11 @@ import com.seonwu.board.dto.response.auth.SignInResponseDto;
 import com.seonwu.board.dto.response.auth.SignUpResponseDto;
 import com.seonwu.board.service.AuthService;
 
+import io.swagger.annotations.Api;
+
 @RestController
 @RequestMapping(ApiPattern.AUTH)
+@Api(description = "인증 모듈")
 public class AuthController {
     
     @Autowired
