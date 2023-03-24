@@ -9,7 +9,7 @@ export default function Footer() {
     <Box sx={{ p: '40px 120px 50px 120px', backgroundColor: '#373737' }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between'}}>
             <Box>
-                <Typography sx={{ fontSize: '20px', fontWeight: 400, color: '#ffffff' }}>Hoons Board</Typography>
+                <Typography sx={{ fontSize: '20px', fontWeight: 400, color: '#ffffff' }}>Seon Board</Typography>
             </Box>
             <Box>
                 <Typography component='span' sx={{ fontSize: '12px', fontWeight: 400, color: '#ffffff' }}>email@gmail.com</Typography>
@@ -21,7 +21,7 @@ export default function Footer() {
                 </IconButton>
             </Box>
         </Box>
-        <Typography sx={{ fontSize: '12px', fontWeight: 400, color: '#ffffff' }}>Copyright @ 2022 jukoyakki. All Rights Reserved </Typography>
+        <Typography sx={{ fontSize: '12px', fontWeight: 400, color: '#ffffff' }}>Copyright @ 2022 seonwu. All Rights Reserved </Typography>
     </Box>
   )
 }

@@ -28,6 +28,7 @@ import com.seonwu.board.dto.response.board.GetMyListResponseDto;
 import com.seonwu.board.dto.response.board.GetSearchListResponseDto;
 import com.seonwu.board.dto.response.board.GetTop15RelatedSearchWordResponseDto;
 import com.seonwu.board.dto.response.board.GetTop15SearchWordResponseDto;
+import com.seonwu.board.dto.response.board.GetTop3ListResponseDto;
 import com.seonwu.board.dto.response.board.LikeResponseDto;
 import com.seonwu.board.dto.response.board.PatchBoardResponseDto;
 import com.seonwu.board.dto.response.board.PostBoardResponseDto;
@@ -58,6 +59,7 @@ public class BoardController {
     private final String GET_SEARCH_LIST_PREVIOUS = "/search-list/{searchWord}/{previousSearchWord}";
     private final String GET_TOP15_SEARCH_WORD = "/top15-search-word";
     private final String GET_TOP15_RELATED_SEARCH_WORD = "/top15-related-search-word/{searchWord}";
+    private final String GET_TOP3_LIST = "/top3-list";
 
     @ApiOperation(value = "게시물 작성", notes = "제목, 내용, 이미지를 전송하면 게시물 작성 결과로 작성된 게시물 정보를 반환, 실패시 실패 메세지를 반환")
     @PostMapping(POST_BOARD)
@@ -134,6 +136,13 @@ public class BoardController {
             ResponseDto<List<GetSearchListResponseDto>> response = boardService.getSearchList(searchWord, previousSearchWord);
 
             return response;
+    }
+
+    @ApiOperation(value = "좋아요 기준 상위 3개 게시물 리스트 가져오기", notes = "요청을 하면, 좋아요 수 기준으로 상위 3개 게시물 리스트를 반환, 실패시 실패 메세지를 반환")
+    @GetMapping(GET_TOP3_LIST)
+    public ResponseDto<List<GetTop3ListResponseDto>> getTop3List() {
+        ResponseDto<List<GetTop3ListResponseDto>> response = boardService.getTop3List();
+        return response;
     }
 
     @ApiOperation(value = "인기 검색어 리스트 가져오기", notes = "요청을 하면, 성공시 가장 많이 검색한 검색어 15개의 검색어 리스트를 반환, 실패시 실패 메세지를 반환")
