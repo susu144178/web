@@ -1,3 +1,10 @@
+import Board from './Board.interface';
+import Comment from './Comment.interface';
+import Liky from './Liky.interface';
+import User from './User.interface';
+
+export type { Board, Comment, Liky, User };
+
 //? 인터페이스 관리
 export interface IPreviewItem {
     img: string | null;
