@@ -50,7 +50,7 @@ export default function NavigationBar() {
             }}
             onClick={() => navigator("/")}
           >
-            Hoons Board
+            Seon Board
           </Typography>
           <Box sx={{ display: "flex" }}>
             <FormControl variant="outlined" sx={{ mr: "10px" }}>
