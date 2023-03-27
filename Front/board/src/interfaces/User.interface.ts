@@ -3,7 +3,7 @@ interface User {
     nickname: string;
     telNumber: string;
     address: string;
-    prifile?: string | null;
+    profile?: string | null;
 }
 
 export default User;
