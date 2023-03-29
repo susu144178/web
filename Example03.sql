@@ -40,6 +40,8 @@ REFERENCES Department (department_code);
 
 USE board;
 
+SELECT * FROM board.user;
+
 SELECT DISTINCT search_word, count(search_word) AS count
 FROM searchwordlog 
 GROUP BY search_word

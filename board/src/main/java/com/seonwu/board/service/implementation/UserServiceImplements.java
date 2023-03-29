@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.seonwu.board.common.constant.ResponseMessage;
 import com.seonwu.board.dto.request.user.PatchProfileDto;
 import com.seonwu.board.dto.response.ResponseDto;
+import com.seonwu.board.dto.response.user.GetUserResponseDto;
 import com.seonwu.board.dto.response.user.PatchProfileResponseDto;
 import com.seonwu.board.entity.UserEntity;
 import com.seonwu.board.repository.UserRepository;
@@ -42,4 +43,22 @@ public class UserServiceImplements implements UserService {
 
     }
 
+    public ResponseDto<GetUserResponseDto> getUser(String email) {
+
+        GetUserResponseDto data = null;
+
+        try {
+
+            UserEntity userEntity = userRepository.findByEmail(email);
+            if (userEntity == null) return ResponseDto.setFailed(ResponseMessage.NOT_EXIST_USER);
+
+            data = new GetUserResponseDto(userEntity);
+
+        } catch(Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
+    };
 }

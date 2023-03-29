@@ -1,7 +1,7 @@
-interface ResponseDto {
+interface Dto {
     board: {
         boardContent: string,
-        boardImgUrl: string,
+        boardImgUrl: string | null,
         boardNumber: number,
         boardTitle: string,
         boardWriteDatetime: string,
@@ -10,7 +10,7 @@ interface ResponseDto {
         viewCount: number,
         writerEmail: string,
         writerNickname: string,
-        writerProfileUrl: string
+        writerProfileUrl: string | null
     },
     commentList: [
         {
@@ -20,7 +20,7 @@ interface ResponseDto {
             writeDatetime: string,
             writerEmail: string,
             writerNickname: string,
-            writerProfileUrl: string
+            writerProfileUrl: string | null
         }
     ],
     likeList: [
@@ -28,9 +28,9 @@ interface ResponseDto {
             boardNumber: number,
             userEmail: string,
             userNickname: string,
-            userProfileUrl: string
+            userProfileUrl: string | null
         }
     ]
 }
 
-export default ResponseDto;
+export default Dto;
