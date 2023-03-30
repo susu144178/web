@@ -1,20 +1,20 @@
 import React from "react";
 import { Box, Avatar, Typography, Divider } from '@mui/material'
-import { ICommentItem } from "src/interfaces";
+import { Comment, ICommentItem } from "src/interfaces";
 
 interface Props {
-  item: ICommentItem;
+  item: Comment;
 }
 
 export default function CommentListItem({item}: Props) {
 
-  const dateGap = Date.now() - Date.parse(item.commentDatetime);
+  const dateGap = Date.now() - Date.parse(item.writeDatetime);
   const before = Math.floor(dateGap / (1000 * 60));
 
   return (
     <Box>
       <Box sx={{ mb: "8px", display: "flex", alignItems: "center" }}>
-        <Avatar sx={{ height: "32px", width: "32px", mr: "8px" }} src={item.commentUserProfile} />
+        <Avatar sx={{ height: "32px", width: "32px", mr: "8px" }} src={item.writerProfileUrl ? item.writerProfileUrl : ''} />
         <Typography
           sx={{
             fontSize: "16px",
@@ -22,7 +22,7 @@ export default function CommentListItem({item}: Props) {
             color: "rgba(0, 0, 0, 0.7)",
           }}
         >
-          {item.commentUserNickname}
+          {item.writerNickname}
         </Typography>
         <Divider
           sx={{ mr: "8px", ml: "8px" }}

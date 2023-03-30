@@ -11,16 +11,16 @@ interface Dto {
         writerEmail: string,
         writerNickname: string,
         writerProfileUrl: string | null
-    },
+    };
     commentList: [
         {
-            boardNumber: number,
-            commentContent: string,
-            commentNumber: number,
-            writeDatetime: string,
-            writerEmail: string,
-            writerNickname: string,
-            writerProfileUrl: string | null
+            boardNumber: number;
+            commentContent: string;
+            commentNumber: number;
+            writeDatetime: string;
+            writerEmail: string;
+            writerNickname: string;
+            writerProfileUrl: string | null;
         }
     ],
     likeList: [
