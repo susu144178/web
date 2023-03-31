@@ -28,10 +28,15 @@ import { usePagingHook } from "src/hooks";
 import { getPageCount } from "src/utils";
 import axios, { AxiosResponse } from "axios";
 import ResponseDto from "src/apis/response";
-import { GetBoardResponseDto } from "src/apis/response/board";
-import { GET_BOARD_URL } from "src/constants/api";
+import { DeleteBoardResponseDto, GetBoardResponseDto, LikeResponseDto, PostCommentResponseDto } from "src/apis/response/board";
+import { authorizationHeader, DELETE_BOARD_URL, GET_BOARD_URL, LIKE_URL, POST_COMMENT_URL } from "src/constants/api";
+import { useCookies } from "react-cookie";
+import { LikeDto, PostCommentDto } from "src/apis/request/board";
 
 export default function BoardDetailView() {
+
+  const [cookies] = useCookies();
+
   const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
   const [menuFlag, setMenuFlag] = useState<boolean>(false);
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -42,7 +47,9 @@ export default function BoardDetailView() {
   const [likeList, setLikeList] = useState<Liky[]>([]);
 
   const [openComment, setOpenComment] = useState<boolean>(false);
+  const [commentContent, setCommentContent] = useState<string>('');
   
+  const accessToken = cookies.accessToken;
   let isLoad = false;
 
   const { boardList, setBoardList, viewList, COUNT, pageNumber, onPageHandler } = usePagingHook(3);
@@ -65,13 +72,7 @@ export default function BoardDetailView() {
       navigator('/');
       return;
     }
-    const { board, commentList, likeList } = data;
-    setBoard(board);
-    // 댓글 리스트를 3개까지 보여도록 하는 로직
-    setBoardList(commentList);
-    setLikeList(likeList);
-    const owner = user !== null && board.writerEmail === user.email;
-    setMenuFlag(owner);
+    setBoardResponse(data);
   }
 
   const getBoardErrorHandler = (error: any) => {
@@ -88,6 +89,97 @@ export default function BoardDetailView() {
     setMenuOpen(false);
   };
 
+  const onLikeHandler = () => {
+    if (!accessToken) {
+      alert('로그인이 필요합니다.')
+      return;
+    }
+
+    const data: LikeDto = { boardNumber: parseInt(boardNumber as string) };
+
+    axios.post(LIKE_URL, data, authorizationHeader(accessToken))
+    .then((response) => likeResponseHandler(response))
+    .catch((error) => likeErrorHandler(error));
+  }
+
+  const likeResponseHandler = (response: AxiosResponse<any, any>) => {
+    const {result, message, data} = response.data as ResponseDto<LikeResponseDto>;
+    if (!result || !data) {
+      alert(message);
+      return;
+    }
+    setBoardResponse(data);
+  }
+
+  const likeErrorHandler = (error: any) => {
+    console.log(error.message);
+  }
+
+  const onPostCommentHandler = () => {
+    if (!accessToken) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
+
+    const data: PostCommentDto = { boardNumber: parseInt(boardNumber as string), commentContent }
+
+    axios.post(POST_COMMENT_URL, data, authorizationHeader(accessToken))
+    .then((response) => postCommentResponseHandler(response))
+    .catch((error) => postCommentErrorHandler(error));
+  }
+
+  const postCommentResponseHandler = (response: AxiosResponse<any, any>) => {
+    const {result, message, data} = response.data as ResponseDto<PostCommentResponseDto>;
+    if (!result || !data) {
+      alert(message);
+      return;
+    }
+    setBoardResponse(data);
+    setCommentContent('');
+  }
+
+  const postCommentErrorHandler = (error: any) => {
+    console.log(error.message);
+  }
+
+  const onDeleteHandler = () => {
+    if (!accessToken) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
+    if (board?.writerEmail !== user?.email) {
+      alert('권한이 없습니다.')
+      return;
+    }
+
+    axios.delete(DELETE_BOARD_URL(boardNumber as string), authorizationHeader(accessToken))
+    .then((response) => deleteBoardResponseHandler(response))
+    .catch((error) => deleteBoardErrorHandler(error));
+  }
+
+  const deleteBoardResponseHandler = (response: AxiosResponse<any, any>) => {
+    const {result, message, data} = response.data as ResponseDto<DeleteBoardResponseDto>;
+    if (!result || !data || !data.resultStatus) {
+      alert(message);
+      return;
+    }
+    navigator('/');
+  }
+
+  const deleteBoardErrorHandler = (error: any) => {
+    console.log(error.message);
+  }
+
+  const setBoardResponse = (data: GetBoardResponseDto | LikeResponseDto | PostCommentResponseDto) => {
+    const { board, commentList, likeList } = data;
+    setBoard(board);
+    // 댓글 리스트를 3개까지 보여도록 하는 로직
+    setBoardList(commentList);
+    setLikeList(likeList);
+    const owner = user !== null && board.writerEmail === user.email;
+    setMenuFlag(owner);
+  }
+
   useEffect(() => {
     if (isLoad) return;
     //? boardNumber가 존재하는지 검증
@@ -98,6 +190,12 @@ export default function BoardDetailView() {
     isLoad = true;
     getBoard();
   }, []);
+
+  useEffect(() => {
+    if (!user) return;
+    const like = likeList.find((like) => like.userEmail === user.email);
+    setLikeStatus(like !== undefined);
+  },[likeList])
 
   return (
     <Box sx={{ p: "100px 222px" }}>
@@ -145,7 +243,7 @@ export default function BoardDetailView() {
             >
               <MenuItem sx={{ p: "10px 59px", opacity: 0.5 }} onClick={() => navigator(`/board/update/${board?.boardNumber}`)}>수정</MenuItem>
               <Divider />
-              <MenuItem sx={{ p: "10px 59px", color: "#ff0000", opacity: 0.5 }}>
+              <MenuItem sx={{ p: "10px 59px", color: "#ff0000", opacity: 0.5 }} onClick={() => onDeleteHandler()}>
                 삭제
               </MenuItem>
             </Menu>
@@ -168,11 +266,11 @@ export default function BoardDetailView() {
           <Box sx={{ mr: "20px", display: "flex" }}>
             {likeStatus ? (
               <FavoriteOutlinedIcon sx={{ height: "24px", width: "24px", mr: "6px", opacity: 0.7, color: '#ff0000' }}
-              onClick={() => setLikeStatus(!likeStatus)} />
+              onClick={() => onLikeHandler()} />
             ) : (
               <FavoriteBorderIcon
                 sx={{ height: "24px", width: "24px", mr: "6px", opacity: 0.7 }}
-                onClick={() => setLikeStatus(!likeStatus)}
+                onClick={() => onLikeHandler()}
               />
             )}
             <Typography
@@ -232,9 +330,9 @@ export default function BoardDetailView() {
           </Box>
           <Box>
             <Card variant="outlined" sx={{ p: '20px' }}>
-              <Input minRows={3} multiline disableUnderline fullWidth />
+              <Input minRows={3} multiline disableUnderline fullWidth value={commentContent} onChange={(event) => setCommentContent(event.target.value)} />
               <Box sx={{ display: 'flex', justifyContent: 'end' }}>
-                <Button sx={{ p: '4px 23px', backgroundColor: '#000000', fontSize: '14px', fontWeight: 400, color: '#ffffff', borderRadius: '46px' }}>댓글달기</Button>
+                <Button sx={{ p: '4px 23px', backgroundColor: '#000000', fontSize: '14px', fontWeight: 400, color: '#ffffff', borderRadius: '46px' }} onClick={() => onPostCommentHandler()}>댓글달기</Button>
               </Box>
             </Card>
           </Box>
