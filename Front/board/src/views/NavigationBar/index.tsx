@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { styled, alpha } from "@mui/material/styles";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,17 +13,20 @@ import {
   InputAdornment,
   OutlinedInput,
 } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
+
 import { useUserStore } from "src/stores";
 
 export default function NavigationBar() {
-  const [content, setContent] = useState<string>("");
 
-  const { user } = useUserStore();
-
+  //      Hook      //
   const navigator = useNavigate();
   const path = useLocation();
 
+  const { user } = useUserStore();
+
+  const [content, setContent] = useState<string>("");
+
+  //      Event Handler      //
   const onSearchHandler = () => {
     if (!content.trim()) {
       alert("검색어를 입력하세요.");

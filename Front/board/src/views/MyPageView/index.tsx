@@ -1,5 +1,5 @@
-import React from 'react'
 import { Box } from '@mui/material';
+
 import MypageHead from './MyPageHead';
 import MyPageContents from './MyPageContents';
 

@@ -1,6 +1,6 @@
-import React from "react";
 import { Box, Avatar, Typography, Divider } from '@mui/material'
-import { Comment, ICommentItem } from "src/interfaces";
+
+import { Comment } from "src/interfaces";
 
 interface Props {
   item: Comment;

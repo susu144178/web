@@ -1,8 +1,8 @@
-import { Avatar, Box, Typography, Card, CardActionArea } from "@mui/material";
-import React from "react";
 import { useNavigate } from "react-router-dom";
+
+import { Avatar, Box, Typography, Card, CardActionArea } from "@mui/material";
+
 import { GetListResponseDto, GetMyListResponseDto, GetSearchListResponseDto } from "src/apis/response/board";
-import { IPreviewItem } from "src/interfaces";
 
 interface Props {
   item: GetListResponseDto | GetSearchListResponseDto | GetMyListResponseDto;
@@ -10,7 +10,8 @@ interface Props {
 
 export default function BoardListItem({ item }: Props) {
 
-    const navigator = useNavigate();
+  //      Hook      //
+  const navigator = useNavigate();
 
   return (
     <Card

@@ -1,24 +1,35 @@
 import React, { ChangeEvent, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+
+import axios, { AxiosResponse } from 'axios';
 import { Avatar, Box, Typography, IconButton } from '@mui/material';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+
 import { useUserStore } from 'src/stores';
-import { useNavigate } from 'react-router-dom';
-import axios, { AxiosResponse } from 'axios';
-import { authorizationHeader, FILE_UPLOAD_URL, multipartHeader, PATCH_PROFILE_URL } from 'src/constants/api';
 import { PatchProfileDto } from 'src/apis/request/user';
 import ResponseDto from 'src/apis/response';
 import { PatchProfileResponseDto } from 'src/apis/response/user';
-import { useCookies } from 'react-cookie';
+import { authorizationHeader, FILE_UPLOAD_URL, multipartHeader, PATCH_PROFILE_URL } from 'src/constants/api';
 
 export default function MypageHead() {
 
-    const imageRef = useRef<HTMLInputElement | null>(null);
+    //          Hook            //
+    const navigator = useNavigate();
+     const imageRef = useRef<HTMLInputElement | null>(null);
 
     const [ cookies, setCookies ] = useCookies();
     const { user, resetUser, setUser } = useUserStore();
-    const navigator = useNavigate();
 
     const accessToken = cookies.accessToken;
+
+    //          Event Handler            //
+    const onLogoutHandler = () => {
+        // TODO : 로그아웃 처리 안됨 해결 필요
+        setCookies('accessToken', '', { expires: new Date() });
+        resetUser();
+        navigator('/');
+    }
 
     const onProfileUploadButtonHandler = () => {
         if (!imageRef.current) return;
@@ -35,6 +46,7 @@ export default function MypageHead() {
         .catch((error) => imageUploadErrorHandler(error));
     }
 
+    //          Response Handler            //
     const imageUploadResponseHandler = (response: AxiosResponse<any, any>) => {
         const profile = response.data as string;
         const data: PatchProfileDto = { profile };
@@ -42,10 +54,6 @@ export default function MypageHead() {
         axios.patch(PATCH_PROFILE_URL, data, authorizationHeader(accessToken))
         .then((response) => patchProfileResponseHandler(response))
         .catch((error) => patchProfileErrorHandler(error));
-    }
-
-    const imageUploadErrorHandler = (error: any) => {
-        console.log(error.message);
     }
 
     const patchProfileResponseHandler = (response: AxiosResponse<any, any>) => {
@@ -57,16 +65,16 @@ export default function MypageHead() {
         setUser(data);
     }
 
+    //          Error Handler            //
+    const imageUploadErrorHandler = (error: any) => {
+        console.log(error.message);
+    }
+
     const patchProfileErrorHandler = (error: any) => {
         console.log(error.message);
     }
 
-    const onLogoutHandler = () => {
-        setCookies('accessToken', '', { expires: new Date() });
-        resetUser();
-        navigator('/');
-    }
-
+    //          Use Effect            //
     useEffect(() => {
         if (!accessToken) {
             navigator('/auth');

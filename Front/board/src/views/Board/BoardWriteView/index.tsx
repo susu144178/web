@@ -1,16 +1,21 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+
+import axios, { AxiosResponse } from "axios";
 import { Box, Input, Divider, IconButton, Fab } from "@mui/material";
 import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 import CreateIcon from "@mui/icons-material/Create";
-import { useNavigate } from "react-router-dom";
-import axios, { AxiosResponse } from "axios";
+
 import ResponseDto from "src/apis/response";
 import { PostBoardResponseDto } from "src/apis/response/board";
-import { useCookies } from "react-cookie";
 import { PostBoardDto } from "src/apis/request/board";
 import { authorizationHeader, FILE_UPLOAD_URL, multipartHeader, POST_BOARD_URL } from "src/constants/api";
 
 export default function BoardWriteView() {
+
+  //          Hook          //
+  const navigator = useNavigate();
 
   const imageRef = useRef<HTMLInputElement | null>(null);
 
@@ -19,36 +24,16 @@ export default function BoardWriteView() {
   const [boardContent, setBoardContent] = useState<string>("");
   const [boardImgUrl, setBoardImgUrl] = useState<string>("");
 
-  const navigator = useNavigate();
-
   const accessToken = cookies.accessToken;
 
-  const postBoard = () => {
-    const data: PostBoardDto = { boardTitle, boardContent, boardImgUrl };
-
-    axios.post(POST_BOARD_URL, data, authorizationHeader(accessToken))
-    .then((response) => postBoardResponseHandler(response))
-    .catch((error) => postBoardErrorHandler(error));
-  }
-
-  const postBoardResponseHandler = (response: AxiosResponse<any, any>) => {
-    const { result, message, data } = response.data as ResponseDto<PostBoardResponseDto>;
-    if (!result || !data) {
-      alert(message);
-      return;
-    }
-    navigator("/myPage");
-  }
-
-  const postBoardErrorHandler = (error: any) => {
-    console.log(error.message);
-  }
-
+  //          Event Handler          //
   const onImageUploadButtonHandler = () => {
     if (!imageRef.current) return;
     imageRef.current.click();
   }
 
+  // TODO : BoardDetailView, BoardUpdateView, MyPageHead 중복
+  // TODO : Hook 또는 외부 함수로 변경
   const onImageUploadChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
     console.log(event.target.files[0]);
@@ -60,16 +45,6 @@ export default function BoardWriteView() {
     .catch((error) => imageUploadErrorHandler(error));
   }
 
-  const imageUploadResponseHandler = (response: AxiosResponse<any, any>) => {
-    const imageUrl = response.data as string;
-    if (!imageUrl) return;
-    setBoardImgUrl(imageUrl);
-  }
-
-  const imageUploadErrorHandler = (error: any) => {
-    console.log(error.message);
-  }
-
   const onWriteHandler = () => {
     //? 제목 및 내용 검증 (값이 존재하는지)
     if (!boardTitle.trim() || !boardContent.trim()) {
@@ -77,8 +52,42 @@ export default function BoardWriteView() {
       return;
     }
     postBoard();
-  };
+  }
 
+  const postBoard = () => {
+    const data: PostBoardDto = { boardTitle, boardContent, boardImgUrl };
+
+    axios.post(POST_BOARD_URL, data, authorizationHeader(accessToken))
+    .then((response) => postBoardResponseHandler(response))
+    .catch((error) => postBoardErrorHandler(error));
+  }
+
+  //          Response Handler          //
+  const postBoardResponseHandler = (response: AxiosResponse<any, any>) => {
+    const { result, message, data } = response.data as ResponseDto<PostBoardResponseDto>;
+    if (!result || !data) {
+      alert(message);
+      return;
+    }
+    navigator("/myPage");
+  }
+
+  const imageUploadResponseHandler = (response: AxiosResponse<any, any>) => {
+    const imageUrl = response.data as string;
+    if (!imageUrl) return;
+    setBoardImgUrl(imageUrl);
+  }
+
+  //          Error Handler          //
+  const postBoardErrorHandler = (error: any) => {
+    console.log(error.message);
+  }
+
+  const imageUploadErrorHandler = (error: any) => {
+    console.log(error.message);
+  } 
+
+  //          Use Effect          //
   useEffect(() => {
     if (!accessToken) {
       alert('로그인이 필요한 작업입니다.');
