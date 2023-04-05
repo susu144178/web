@@ -16,13 +16,16 @@ export default function SearchView() {
 
   //          Hook          //
   const { content } = useParams();
-  
   const { boardList, viewList, pageNumber, setBoardList, onPageHandler, COUNT } = usePagingHook(5);
-  const [ popularList, setPopularList ] = useState<string[]>([]);
+
+  const [popularList, setPopularList] = useState<string[]>([]);
+  const [previousSearchWord, setPreviousSearchWord] = useState<string>('');
+
+  let loadFlag = true;
 
   //          Event Handler          //
   const getSearchList = () => {
-    axios.get(GET_SEARCH_LIST_URL(content as string))
+    axios.get(GET_SEARCH_LIST_URL(content as string, previousSearchWord))
     .then((response) => getSearchListResponseHandler(response))
     .catch((error) => getSearchListErrorHandler(error));
   }
@@ -57,8 +60,12 @@ export default function SearchView() {
 
   //          Use Effect          //
   useEffect(() => {
+    if (loadFlag) {
+      loadFlag = false;
       getSearchList();
       getTop15RelatedSearchWord();
+      setPreviousSearchWord(content as string);
+    }
   }, [content]);
 
   return (

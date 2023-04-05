@@ -47,7 +47,7 @@ export default function LoginCardView({ setLoginView }: Props) {
     const onLoginHandler = () => {
         //? email 입력했는지 검증 / password 입력했는지 검증
         if (!email.trim() || !password.trim()) {
-            alert('모든 값을 입력해주세요.');
+            alert("모든 값을 입력해주세요.");
             return;
         }
 
@@ -70,7 +70,7 @@ export default function LoginCardView({ setLoginView }: Props) {
         //? 로그인 처리
         //? 쿠키에 로그인 데이터 (Token) 보관
         const expires = getExpires(expiredTime);
-        setCookie('accessToken', token, { expires });
+        setCookie('accessToken', token, { expires, path: '/' });
         //? 스토어에 유저 데이터 보관
         setUser(user);
         navigator('/');
@@ -107,9 +107,9 @@ export default function LoginCardView({ setLoginView }: Props) {
             <Box>
                 { loginError && (
                     <Box sx={{ mb: '12px' }}>
-                    <Typography sx={{fontSize: '12px', color: 'red', opacity: '0.7'}}>이메일 주소 또는 비밀번호를 잘못 입력했습니다.</Typography>
-                    <Typography sx={{fontSize: '12px', color: 'red', opacity: '0.7'}}>입력하신 내용을 다시 확인해 주세요.</Typography>
-                </Box> 
+                        <Typography sx={{fontSize: '12px', color: 'red', opacity: '0.7'}}>이메일 주소 또는 비밀번호를 잘못 입력했습니다.</Typography>
+                        <Typography sx={{fontSize: '12px', color: 'red', opacity: '0.7'}}>입력하신 내용을 다시 확인해 주세요.</Typography>
+                    </Box> 
                 ) }            
                 <Button sx={{ mb: '20px' }} fullWidth variant="contained" size='large' onClick={onLoginHandler}>로그인</Button>
                 <Typography textAlign={'center'}>신규사용자 이신가요?

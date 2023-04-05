@@ -26,7 +26,7 @@ export default function MypageHead() {
     //          Event Handler            //
     const onLogoutHandler = () => {
         // TODO : 로그아웃 처리 안됨 해결 필요
-        setCookies('accessToken', '', { expires: new Date() });
+        setCookies('accessToken', '', { expires: new Date(), path: '/' });
         resetUser();
         navigator('/');
     }

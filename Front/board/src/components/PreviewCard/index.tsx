@@ -22,8 +22,7 @@ export default function PreviewCard({ previewItem }: Props) {
           height: "508px",
           backgroundImage: backgroundImage,
           backgroundSize: "cover",
-          display: "flex",
-          flexDirection: "column-reverse",
+          backgroundColor: '#666666',
         }}
         onClick={() => navigator(`/board/detail/${previewItem.boardNumber}`)}
       >

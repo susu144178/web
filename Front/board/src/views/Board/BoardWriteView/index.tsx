@@ -130,7 +130,7 @@ export default function BoardWriteView() {
           position: "fixed",
           bottom: "200px",
           right: "250px",
-          backgroundColor: "rgba(0, 0, 0, 0.4)",
+          backgroundColor: "#999999",
         }}
         onClick={onWriteHandler}
       >
