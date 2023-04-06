@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
@@ -27,6 +27,16 @@ export default function BoardWriteView() {
   const accessToken = cookies.accessToken;
 
   //          Event Handler          //
+  const onBoardContentChangeHandler = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    const value = event.target.value;
+    setBoardContent(value);
+  }
+
+  const onBoardContentKeyPressHandler = (event: KeyboardEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    if (event.key !== 'Enter') return;
+    setBoardContent(boardContent + '\n');
+  }
+
   const onImageUploadButtonHandler = () => {
     if (!imageRef.current) return;
     imageRef.current.click();
@@ -115,7 +125,8 @@ export default function BoardWriteView() {
               minRows={20}
               placeholder="본문을 작성해주세요."
               sx={{ fontSize: "18px", fontWeight: 500, lineHeight: "150%" }}
-              onChange={(event) => setBoardContent(event.target.value)}
+              onChange={(event) => onBoardContentChangeHandler(event)}
+              onKeyDown={(event) => onBoardContentKeyPressHandler(event)}
             />
             <Box sx={{width: '100%'}} component='img' src={boardImgUrl} />
           </Box>

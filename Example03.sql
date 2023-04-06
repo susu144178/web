@@ -40,7 +40,7 @@ REFERENCES Department (department_code);
 
 USE board;
 
-SELECT * FROM board.relatedsearchword;
+SELECT * FROM board.user;
 
 SELECT DISTINCT search_word, count(search_word) AS count
 FROM searchwordlog 
