@@ -24,6 +24,27 @@ interface ISignUpStore {
     setTelNumber: (str: string) => void
     setAddress: (str: string) => void;
     setAddressDetail: (str: string) => void;
+
+    signUpError: boolean;
+    setSignUpError: (signUpError: boolean) => void;
+
+    emailPatternCheck: boolean | null;
+    setEmailPatternCheck: (emailPatternCheck: boolean) => void;
+    emailValidate: boolean | null;
+    setEmailValidate: (emailValidate: boolean) => void;
+
+    passwordPatternCheck: boolean | null;
+    setPasswordPatternCheck: (passwordPatternCheck: boolean) => void;
+    passwordValidate: boolean | null;
+    setPasswordValidate: (passwordValidate: boolean) => void;
+
+    nicknameValidate: boolean | null;
+    setNicknameValidate: (nicknameValidate: boolean) => void;
+
+    telNumberValidate: boolean | null;
+    setTelNumberValidate: (telNumberValidate: boolean) => void;
+    telNumberPatternCheck: boolean | null;
+    setTelNumberPatternCheck: (telNumberPatternCheck: boolean) => void;
 }
 
 //^ create 메서드를 사용해서 store를 생성
@@ -42,6 +63,27 @@ const useStore = create<ISignUpStore>((set) => ({
     setTelNumber: (telNumber) => set((state) => ({...state, telNumber})),
     setAddress: (address) => set((state) => ({...state, address})),
     setAddressDetail: (addressDetail) => set((state) => ({...state, addressDetail})),
+
+    signUpError: false,
+    setSignUpError: (signUpError: boolean) => set((state) => ({...state, signUpError})),
+
+    emailPatternCheck: null,
+    setEmailPatternCheck: (emailPatternCheck: boolean) => set((state) => ({...state, emailPatternCheck})),
+    emailValidate: null,
+    setEmailValidate: (emailValidate: boolean) => set((state) => ({...state, emailValidate})),
+
+    passwordPatternCheck: null,
+    setPasswordPatternCheck: (passwordPatternCheck: boolean) => set((state) => ({...state, passwordPatternCheck})),
+    passwordValidate: null,
+    setPasswordValidate: (passwordValidate: boolean) => set((state) => ({...state, passwordValidate})),
+
+    nicknameValidate: null,
+    setNicknameValidate: (nicknameValidate: boolean) => set((state) => ({...state, nicknameValidate})),
+
+    telNumberPatternCheck: null,
+    setTelNumberPatternCheck: (telNumberPatternCheck: boolean) => set((state) => ({...state, telNumberPatternCheck})),
+    telNumberValidate: null,
+    setTelNumberValidate: (telNumberValidate: boolean) => set((state) => ({...state, telNumberValidate})),
 }))
 
 export default useStore;
